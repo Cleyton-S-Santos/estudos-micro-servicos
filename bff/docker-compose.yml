@@ -1,0 +1,32 @@
+version: "3"
+services:
+  auth-db:
+    image: postgres:11
+    container_name: auth-db
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=auth-db
+    ports:
+      - "5432:5432"
+
+  orders-db:
+    image: postgres:11
+    container_name: orders-db
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=orders-db
+    ports:
+      - "5433:5432"
+
+  sales-rabbit:
+    image: rabbitmq:3.6-management
+    container_name: sales-rabbit
+    restart: always
+    ports:
+      - "5672:5672"
+      - "25672:25672"
+      - "15672:15672"
